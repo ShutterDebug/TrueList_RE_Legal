@@ -7,7 +7,7 @@ This repository contains public-facing legal documents for the TrueList RE Chrom
 
 ## Product
 
-Like online dating, listings show their best side. We help you check what’s behind the listing before you do.
+Like online dating, real estate listings show their best side. We help you check what’s behind the listing before you do.
 
 Buying a home is emotional. You’re scrolling, imagining your life there, picturing the layout, the light, the neighborhood. But most buyers are evaluating what’s visible on the surface, while the real risks are buried in details that take time, effort, and experience to uncover.
 
