@@ -1,2 +1,11 @@
-# TrueList_RE_Legal
-A Chrome extension for cross-referencing real estate listings on Redfin, Zillow, and Realtor.com against King County (and eventually nearby WA county) public assessor records.
+# TrueList RE – Legal Documents
+
+This repository contains public-facing legal documents for the TrueList RE Chrome extension.
+
+## Documents
+- Privacy Policy
+
+## Product
+TrueList RE is a browser extension that analyzes real estate listings using public records and AI.
+
+Source code for the extension is not public at this time.
