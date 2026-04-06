@@ -1,6 +1,6 @@
 # Privacy Policy for TrueList RE
 
-*Last updated: March 2026*
+*Last updated: April 2026*
 
 ## Overview
 
@@ -35,7 +35,7 @@ TrueList RE collects anonymous product analytics events to understand how the ex
 - Property addresses or listing URLs in analytics events
 - Your browsing history
 
-Analytics events are sent to PostHog using an anonymous, randomly-generated installation ID that cannot be linked to your identity. Selected events are also stored in our backend database (Cloudflare D1) for operational analysis. Analytics events are retained for 730 days.
+Analytics events are sent to PostHog using an anonymous, randomly-generated installation ID that cannot be linked to your identity. The same anonymous installation ID is included in events stored in our backend database (Cloudflare D1) for operational analysis, so we can understand per-installation patterns such as error rates and feature usage without identifying individual users. Analytics events are retained for 730 days.
 
 This data is never sold or used for advertising, profiling, or any purpose beyond operating and improving the extension.
 
@@ -59,8 +59,11 @@ When you voluntarily submit feedback through the extension, TrueList RE collects
 - The type and section of feedback
 - Your email address, if you choose to provide it for follow-up
 - A session identifier associated with the analysis you were viewing, to help investigate the issue
+- Your anonymous installation ID (see Local Storage below)
 
 Feedback records are stored in Cloudflare D1 and retained indefinitely to support issue triage and product improvement. Your email address, if provided, is used only to follow up on the specific issue you reported and is never sold or used for any other purpose. Feedback may be analyzed to improve product features, quality, and user experience.
+
+**If you include your email**, we may look at your recent usage (like past analyses or errors) to help us understand and fix the issue you reported. We'll never use this information for ads, marketing, or anything beyond helping you.
 
 ---
 
@@ -118,7 +121,7 @@ The extension uses Chrome's local storage API to save:
 - **User preferences** (such as which sections are collapsed or expanded)
 - **Property data cache** — listing and assessor data for the current property, cached for up to 30 minutes to avoid redundant lookups
 - **AI Summary cache** — generated summaries cached locally for up to 30 minutes
-- **Anonymous installation ID** — a randomly-generated ID used to deduplicate analytics events sent to PostHog; not linked to your identity
+- **Anonymous installation ID** — a randomly-generated ID used to deduplicate analytics events sent to PostHog and included in backend telemetry for per-installation operational analysis; not linked to your identity
 
 All cached data is stored only on your device and is never shared.
 
