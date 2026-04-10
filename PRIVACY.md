@@ -1,6 +1,6 @@
 # Privacy Policy for TrueList RE
 
-*Last updated: April 8, 2026*
+*Last updated: April 10, 2026*
 
 ## Overview
 
@@ -114,6 +114,7 @@ Please refer to the respective privacy policies of these services for details on
 | Diagnostic snapshots | 180 days |
 | User feedback | Indefinite |
 | Local property and AI summary cache | Up to 30 minutes (on-device only) |
+| Road and amenity context cache (per-coordinate) | Up to 7 days (on-device only) |
 
 ---
 
@@ -126,6 +127,8 @@ The extension uses Chrome's local storage API to save:
 - **Anonymous installation ID** — a randomly-generated ID used to deduplicate analytics events sent to PostHog and included in backend telemetry for per-installation operational analysis; not linked to your identity
 
 All cached data is stored only on your device and is never shared.
+
+**Road and amenity context cache** — when road proximity and nearby amenity data is successfully retrieved for a property, the result is cached locally using the property's geocoordinates (rounded to approximately 11 meters) as a cache key. This cache has a 7-day TTL. The coordinates are derived from the public listing address you chose to view, are stored only on your device, and are never stored on our servers.
 
 ---
 
