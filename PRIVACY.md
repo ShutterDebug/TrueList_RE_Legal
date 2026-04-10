@@ -1,6 +1,6 @@
 # Privacy Policy for TrueList RE
 
-*Last updated: April 2026*
+*Last updated: April 8, 2026*
 
 ## Overview
 
@@ -29,10 +29,12 @@ TrueList RE collects anonymous product analytics events to understand how the ex
 - AI summary outcomes: which prompt path was used, model metadata, and whether a cached result was served
 - Feedback submission events (type only — not the content of feedback)
 - Which county was looked up and which data sources succeeded or failed
+- The listing page URL, when an analysis fails, to help reproduce the issue
+- Derived comparison signals between listing data and public records, such as whether certain attributes (e.g., square footage, bedroom count) are inconsistent across sources, expressed as bucketed ranges or integer differences — stored without raw property values, addresses, or listing URLs, and used only to improve analysis quality and system performance
 
 **What is never collected:**
 - Your identity, account information, or any personal details
-- Property addresses or listing URLs in analytics events
+- Property addresses or listing URLs in analytics events, except when an analysis fails (see above)
 - Your browsing history
 
 Analytics events are sent to PostHog using an anonymous, randomly-generated installation ID that cannot be linked to your identity. The same anonymous installation ID is included in events stored in our backend database (Cloudflare D1) for operational analysis, so we can understand per-installation patterns such as error rates and feature usage without identifying individual users. Analytics events are retained for 730 days.
@@ -80,7 +82,7 @@ We may also analyze anonymized AI outputs and associated feedback to improve mod
 - TrueList RE does not collect personal information about users, except for an email address you voluntarily provide when submitting feedback (see User Feedback above).
 - No browsing history outside supported listing pages is collected or stored.
 - TrueList RE does not track users across sites. No advertising, profiling, or cross-site tracking of any kind is used.
-- Property addresses and listing URLs are never included in routine analytics events.
+- Property addresses and listing URLs are never included in routine analytics events, except that the listing URL may be included when an analysis fails to help reproduce the issue.
 
 ---
 
