@@ -1,6 +1,6 @@
 # Privacy Policy for TrueList RE
 
-*Last updated: April 10, 2026*
+*Last updated: April 11, 2026*
 
 ## Overview
 
@@ -94,7 +94,7 @@ To retrieve public property data and generate AI summaries, the extension commun
 - **Nominatim / OpenStreetMap** — for geocoding property addresses ([openstreetmap.org/copyright](https://www.openstreetmap.org/copyright))
 - **King County GIS / eReal Property** — official King County assessor records (kingcounty.gov)
 - **Snohomish, Pierce, and Kitsap County government portals** — official assessor records (respective .gov domains)
-- **Overpass API** — queries nearby points of interest and road proximity using the property's coordinates (overpass-api.de)
+- **Overpass API** — queries nearby points of interest and road proximity using the property's coordinates. Two mirrors are used: overpass-api.de and overpass.kumi.systems (operated by FOSSGIS e.V., the German OpenStreetMap association).
 
 **Backend and AI services:**
 - **Cloudflare Workers** — our AI Summary backend runs on Cloudflare's edge infrastructure. Aggregated property data is sent here to generate summaries.
