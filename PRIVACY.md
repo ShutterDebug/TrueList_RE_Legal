@@ -1,6 +1,6 @@
 # Privacy Policy for TrueList RE
 
-*Last updated: April 11, 2026*
+*Last updated: May 16, 2026*
 
 ## Overview
 
@@ -14,7 +14,7 @@ TrueList RE accesses the following data solely to provide its core functionality
 
 - **Page content on supported listing sites** (Redfin, Zillow, Realtor.com): The extension reads property details from the current listing page (address, square footage, price, etc.) to display alongside assessor records.
 - **Property address**: Used to query public government geocoding and assessor databases to retrieve official county records for the property being viewed.
-- **Aggregated property data for AI Summary**: When the AI Summary feature runs, aggregated property details (address, square footage, beds/baths, assessor data, price estimates, and location signals) are sent to our backend service to generate a plain-language summary. No personal user data (such as identity or account information) is included.
+- **Property data for AI Summary**: When the AI Summary feature runs, property details — including the address, square footage, beds/baths, assessor data, price estimates, and location signals — are sent to our backend to generate a plain-language summary and look up key property insights, such as nearby amenities and road exposure. This data is used only to produce the response and is not stored by us. No personal user information (such as your identity or account details) is included.
 
 ---
 
@@ -25,31 +25,29 @@ TrueList RE collects anonymous product analytics events to understand how the ex
 **What is collected:**
 - Extension open events (popup or side panel)
 - UI interactions such as switching modes, expanding or collapsing sections, and opening the feedback panel
-- Analysis lifecycle events: when an analysis starts, completes, fails, or is manually refreshed
+- Analysis lifecycle events: when an analysis starts, completes, fails at any step, or is manually refreshed
 - AI summary outcomes: which prompt path was used, model metadata, and whether a cached result was served
 - Feedback submission events (type only — not the content of feedback)
-- Which county was looked up and which data sources succeeded or failed
-- The listing page URL, when an analysis fails, to help reproduce the issue
-- Derived comparison signals between listing data and public records, such as whether certain attributes (e.g., square footage, bedroom count) are inconsistent across sources, expressed as bucketed ranges or integer differences — stored without raw property values, addresses, or listing URLs, and used only to improve analysis quality and system performance
+- Which county was looked up and which data sources (including location data queries) succeeded or failed
+- The listing page URL, when an error occurs, to help reproduce the issue
+- Comparison signals between listing data and public records (for example, whether square footage or bedroom count is inconsistent across sources), stored as derived values without raw property values, addresses, or listing URLs
+- An anonymized identifier for each property analyzed — a scrambled, non-reversible code derived from the county and address — used only to count how often a property is looked up
 
 **What is never collected:**
 - Your identity, account information, or any personal details
-- Property addresses or listing URLs in analytics events, except when an analysis fails (see above)
-- Your browsing history
+- Property addresses or listing URLs in routine analytics events (except the listing URL when an error occurs, as noted above)
+- Your browsing history or activity outside supported listing pages
+- Any information used for advertising, profiling, or cross-site tracking
 
-Analytics events are sent to PostHog using an anonymous, randomly-generated installation ID that cannot be linked to your identity. The same anonymous installation ID is included in events stored in our backend database (Cloudflare D1) for operational analysis, so we can understand per-installation patterns such as error rates and feature usage without identifying individual users. Analytics events are retained for 730 days.
-
-This data is never sold or used for advertising, profiling, or any purpose beyond operating and improving the extension.
+Analytics events are sent to PostHog using an anonymous, randomly-generated installation ID that cannot be linked to your identity. The same ID is included in events stored in our backend database (Cloudflare D1) for operational analysis — for example, understanding per-installation error rates and feature usage. Analytics events are retained for 730 days.
 
 ---
 
 ## Diagnostic Telemetry
 
-When the extension encounters an error or a user submits feedback, TrueList RE may capture a diagnostic snapshot to help investigate the issue. This can include property-level data such as the listing URL, address, data source results, AI summary content, and any error details from the failed lookup.
+When the extension encounters an error or a user submits feedback, TrueList RE may capture a diagnostic snapshot, including property-level data such as the listing URL, address, data source results, AI summary content, and error details. This is used solely to help reproduce and fix the issue.
 
-This data is only captured when an error occurs or when a user explicitly submits feedback.
-
-Diagnostic snapshots are stored in Cloudflare D1 and retained for 180 days. They are used solely to reproduce and fix issues, and are never sold, used for advertising or profiling, or used for any purpose other than improving the extension.
+Diagnostic snapshots are stored in Cloudflare D1 and retained for 180 days.
 
 ---
 
@@ -63,26 +61,15 @@ When you voluntarily submit feedback through the extension, TrueList RE collects
 - A session identifier associated with the analysis you were viewing, to help investigate the issue
 - Your anonymous installation ID (see Local Storage below)
 
-Feedback records are stored in Cloudflare D1 and retained indefinitely to support issue triage and product improvement. Your email address, if provided, is used only to follow up on the specific issue you reported and is never sold or used for any other purpose. Feedback may be analyzed to improve product features, quality, and user experience.
+Feedback records are stored in Cloudflare D1 and retained indefinitely to support issue triage and product improvement.
 
-**If you include your email**, we may look at your recent usage (like past analyses or errors) to help us understand and fix the issue you reported. We'll never use this information for ads, marketing, or anything beyond helping you.
+**If you include your email**, we may use it to follow up on the issue you reported — we may also link it to recent errors or events from your installation to help diagnose it. It's never shared, sold, or used for ads or marketing.
 
 ---
 
 ## Anonymized Analysis Data
 
-We may retain de-identified analysis data, such as AI-generated summaries and derived signals, to improve product quality and system performance. This data does not include property addresses, listing URLs, or any personal user information.
-
-We may also analyze anonymized AI outputs and associated feedback to improve model quality and reliability.
-
----
-
-## Data We Do NOT Collect
-
-- TrueList RE does not collect personal information about users, except for an email address you voluntarily provide when submitting feedback (see User Feedback above).
-- No browsing history outside supported listing pages is collected or stored.
-- TrueList RE does not track users across sites. No advertising, profiling, or cross-site tracking of any kind is used.
-- Property addresses and listing URLs are never included in routine analytics events, except that the listing URL may be included when an analysis fails to help reproduce the issue.
+We may retain de-identified data — such as derived comparison signals and AI-generated summaries — to improve product quality and reliability. This data does not include property addresses, listing URLs, or any personal user information.
 
 ---
 
@@ -97,9 +84,9 @@ To retrieve public property data and generate AI summaries, the extension commun
 - **Overpass API** — queries nearby points of interest and road proximity using the property's coordinates. Two mirrors are used: overpass-api.de and overpass.kumi.systems (operated by FOSSGIS e.V., the German OpenStreetMap association).
 
 **Backend and AI services:**
-- **Cloudflare Workers** — our AI Summary backend runs on Cloudflare's edge infrastructure. Aggregated property data is sent here to generate summaries.
+- **Cloudflare Workers** — our backend receives property details, uses the address to look up nearby amenities and road exposure, and distills everything into de-identified property signals. These signals — not including the property address — are then forwarded to AI providers to generate the summary.
 - **Cloudflare D1** — our backend database, hosted on Cloudflare, stores analytics events, diagnostic snapshots, and user feedback (see sections above).
-- **AI models (e.g. Anthropic, OpenAI)** — our backend forwards aggregated property data to third-party AI providers to generate the plain-language summary. No personal user data (such as identity or account information) is included in these requests.
+- **AI models (e.g. Anthropic, OpenAI)** — receive de-identified property signals from our backend to generate the plain-language summary. No personal user information is included.
 - **PostHog** — receives anonymous product analytics events (see Product Analytics Telemetry above). PostHog does not receive diagnostic snapshots or feedback content.
 
 Please refer to the respective privacy policies of these services for details on how they handle requests.
